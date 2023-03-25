@@ -22,7 +22,7 @@ class App extends Component {
     }
   }
 
-  componentDidUpdate(prevState) {
+  componentDidUpdate(prevProps, prevState) {
     if (this.state.contacts !== prevState.contacts) {
       localStorage.setItem("contacts", JSON.stringify(this.state.contacts));
     }
@@ -34,11 +34,11 @@ class App extends Component {
     )
       ? alert(name + " is already in your contacts.")
       : this.setState((prevState) => ({
-        contacts: [
-          ...prevState.contacts,
-          { id: nanoid(), name: name, number: number },
-        ],
-      }));
+          contacts: [
+            ...prevState.contacts,
+            { id: nanoid(), name: name, number: number },
+          ],
+        }));
   };
 
   filterNames = (e) => {
